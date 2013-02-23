@@ -55,9 +55,11 @@ function render_page(req, res) {
 }
 
 function handle_facebook_request(req, res) {
+  console.log("facebook req object:",req.facebook);
 
   // if the user is logged in
   if (req.facebook.token) {
+    console.log('access token exists');
 
     async.parallel([
       function(cb) {
