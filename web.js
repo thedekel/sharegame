@@ -2,6 +2,8 @@ var async   = require('async');
 var express = require('express');
 var util    = require('util');
 
+var routes = require('./routes');
+
 // create an express webserver
 var app = express()
 app.use( express.logger());
@@ -99,5 +101,10 @@ function handle_facebook_request(req, res) {
   }
 }
 
-app.get('/', handle_facebook_request);
-app.post('/', handle_facebook_request);
+app.get('/', routes.main_page); //handle_facebook_request);
+app.post('/wishlist/:game_id', routes.add_want); //handle_facebook_request);
+app.get('/wishlist/:game_id', routes.game_details);
+app.get('/purchase/new/:game_id', routes.buy_request_page);
+app.post('/purchase/new/:game_id', routes.submit_buy_request);
+app.get('/purchase/accept/:purchase_id', routes.accept_purchase_page);
+app.post('/purchase/accept/:purchase_id', routes.accept_purchase_action);
