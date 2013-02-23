@@ -102,7 +102,9 @@ function handle_facebook_request(req, res) {
 }
 
 app.get('/', routes.main_page); //handle_facebook_request);
-app.post('/wishlist/:game_id', routes.add_want); //handle_facebook_request);
+app.post('/', routes.main_page); //handle_facebook_request);
+app.get('/original_page', handle_facebook_request);
+app.post('/wishlist/:game_id', routes.add_want);
 app.get('/wishlist/:game_id', routes.game_details);
 app.get('/purchase/new/:game_id', routes.buy_request_page);
 app.post('/purchase/new/:game_id', routes.submit_buy_request);
