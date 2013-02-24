@@ -28,10 +28,10 @@ module.exports.main_page = function(req, res){
       games.find({}, function(err, games_c){
         games_c.limit(12)
         games_c.toArray(function(err, games_arr){
-          console.log(games_arr);
+          console.log("games_arr: ",games_arr);
+          console.log("me", req.facebook.me());
         });
       });
-    });
     return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}});
   } else {
     //return not-logged in
