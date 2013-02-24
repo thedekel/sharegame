@@ -5,8 +5,9 @@ var util    = require('util');
 var routes = require('./routes');
 
 // create an express webserver
-var app = express()
-app.set('view engine', 'ejs');
+var app = express();
+
+app.set("view engine", "ejs");
 app.use( express.logger());
 app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
@@ -21,10 +22,29 @@ app.use(require('faceplate').middleware({
 // listen to the PORT given to us in the environment
 var port = process.env.PORT || 3000;
 
-app.listen(port, function() {
-  console.log("Listening on " + port);
+app.use(function(req, res, next){
+  res.locals.host = req.headers['host'];
+  next();
 });
-
+app.use(function(req, res, next){
+  res.locals.scheme = function(req, res){
+    return req.headers['x-forwarded-proto'] || 'http';
+  };
+  next();
+});
+app.use(function(req, res, next){
+  res.locals.url_no_scheme = function(path){
+    return "://" + res.locals.host + path;
+  };
+  next();
+});
+app.use(function(req, res, next){
+  res.locals.url = function(path){
+    return res.locals.scheme(req,res) + res.locals.url_no_scheme(path);
+  };
+  next();
+});
+/*
 app.locals({
   'host': function(req, res) {
     return req.headers['host'];
@@ -34,16 +54,16 @@ app.locals({
   },
   'url': function(req, res) {
     return function(path) {
-      return app.dynamicViewHelpers.scheme(req, res) + app.dynamicViewHelpers.url_no_scheme(path);
+      return app.locals.scheme(req, res) + app.locals.url_no_scheme(path);
     }
   },
   'url_no_scheme': function(req, res) {
     return function(path) {
-      return '://' + app.dynamicViewHelpers.host(req, res) + path;
+      return '://' + app.locals.host(req, res) + path;
     }
   },
 });
-
+*/
 function render_page(req, res) {
   req.facebook.app(function(app) {
     req.facebook.me(function(user) {
@@ -102,12 +122,12 @@ function handle_facebook_request(req, res) {
   }
 }
 
-app.get('/', routes.main_page); //handle_facebook_request);
-app.post('/', routes.main_page); //handle_facebook_request);
-app.get('/original_page', handle_facebook_request);
-app.post('/wishlist/:game_id', routes.add_want);
-app.get('/wishlist/:game_id', routes.game_details);
-app.get('/purchase/new/:game_id', routes.buy_request_page);
-app.post('/purchase/new/:game_id', routes.submit_buy_request);
-app.get('/purchase/accept/:purchase_id', routes.accept_purchase_page);
-app.post('/purchase/accept/:purchase_id', routes.accept_purchase_action);
+app.get('/', routes.main_page);//handle_facebook_request);
+app.post('/:gameid', routes.add_want);//handle_facebook_request);
+app.get('/:gameid', routes.game_details);
+
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
+
+

@@ -1,53 +1,84 @@
+var Mongolian = require("mongolian");
+
+var server;
+if (process.env.MONGOLAB_URI){
+  server = new Mongolian(process.env.MONGOLAB_URI);
+} else {
+  server = new Mongolian;
+}
+
+var db = server.db("playshare");
+
+var games = db.collection("games");
+var users = db.collection("users");
+
 /* MIN VIABLE
  * GET /
  * show the main page
  */
 module.exports.main_page = function(req, res){
+  console.log(req.facebook);
+  if (req.facebook.token){
+    //get a list of all games
+    req.facebook.get('/me/friends', {}, function(friends) {
+      friends.forEach(function(f){
+        console.log(f);
+      });
+      games.find({}, function(err, games_c){
+        games_c.limit(12)
+        games_c.toArray(function(err, games_arr){
+        });
+      });
+    });
+  } else {
+    //return not-logged in
+    return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}});
+  }
   var pop_games = [
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
   }
   ];
   var friends_games = [
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
       img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
       friends: [
@@ -74,14 +105,14 @@ module.exports.main_page = function(req, res){
     ]
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
     friends: [
       ]
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
     friends: [
@@ -108,7 +139,7 @@ module.exports.main_page = function(req, res){
     ]
   },
   {
-    _id: "myidisastring"
+    _id: "myidisastring",
       name: "Dragon Ball Z Bodokai tenkaichi 3",
     img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
     friends: [
