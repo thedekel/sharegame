@@ -29,7 +29,9 @@ module.exports.main_page = function(req, res){
       games.find({}).limit(12).toArray(function(err,games_arr){
         console.log("I HOPE I'M HERE");
         console.log("games_arr: ",games_arr);
-        console.log("me", req.facebook.me());
+        req.facebook.me(function(me){
+          console.log("me", me);
+        });
       });
     return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}});
   } else {
