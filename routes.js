@@ -19,153 +19,20 @@ var users = db.collection("users");
 module.exports.main_page = function(req, res){
   console.log(req.facebook);
   if (req.facebook.token){
-    //get a list of all games
 /*    req.facebook.get('/me/friends', {}, function(friends) {
       users.findOne({$or:friends},function(err,doc){
         console.log("USER MATCHED: ", doc);
       });
       */
     console.log('about to query games');
-      games.find({}).limit(12).toArray(function(err,games_arr){
-        console.log("I HOPE I'M HERE");
-        console.log("games_arr: ",games_arr);
-        req.facebook.me(function(me){
-          console.log("me", me);
-        });
-      });
-    return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}});
+    games.find({}).limit(12).toArray(function(err,games_arr){
+      console.log("games_arr: ",games_arr);
+      return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}, games:games_arr});
+    });
   } else {
     //return not-logged in
     return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}});
   }
-  var pop_games = [
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
-  }
-  ];
-  var friends_games = [
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-      img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
-      friends: [
-      {
-        name: "Jarvis Johnson",
-        fbid: 3289423,
-        prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-      },
-      {
-        name: "Jarvis Johnson",
-        fbid: 3289423,
-        prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-      },
-      {
-        name: "Jarvis Johnson",
-        fbid: 3289423,
-        prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-      },
-      {
-        name: "Jarvis Johnson",
-        fbid: 3289423,
-        prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-      }
-    ]
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
-    friends: [
-      ]
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
-    friends: [
-    {
-      name: "Jarvis Johnson",
-      fbid: 3289423,
-      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-    },
-    {
-      name: "Jarvis Johnson",
-      fbid: 3289423,
-      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-    },
-    {
-      name: "Jarvis Johnson",
-      fbid: 3289423,
-      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-    },
-    {
-      name: "Jarvis Johnson",
-      fbid: 3289423,
-      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-    }
-    ]
-  },
-  {
-    _id: "myidisastring",
-      name: "Dragon Ball Z Bodokai tenkaichi 3",
-    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
-    friends: [
-    {
-      name: "Jarvis Johnson",
-      fbid: 3289423,
-      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-    },
-    {
-      name: "Jarvis Johnson",
-      fbid: 3289423,
-      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-    },
-    {
-      name: "Jarvis Johnson",
-      fbid: 3289423,
-      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
-    },
-    ]
-  }
-  ];
-  res.render('new',{pop_games:pop_games, friends_games:friends_games});
 };
 
 /* MIN VIABLE
@@ -173,7 +40,16 @@ module.exports.main_page = function(req, res){
  * add the game to the user's wish list
  */
 module.exports.add_want = function(req, res){
-  res.send('add the game to the user\'s wish list');
+  req.facebook.me(function(me){
+    console.log("me", me);
+    var userobj = {
+      name: me.name,
+      fbid: me.id
+    };
+    games.update({_id:req.params.game_id}, {$addToSet:{users:userobj}},function(){
+      res.redirect('/');
+    });
+  });
 };
 
 /* MIN VIABLE

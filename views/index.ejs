@@ -62,5 +62,12 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
+    <% for (i=0; i<games.length; i++){ %>
+    <div><%= games[i] %>
+      <form action="/wishlist/<%= games[i]._id %>" method="post">
+        <input type='submit' value='add to wishlist' />
+      </form>
+    </div>
+    <% } %>
   </body>
 </html>
