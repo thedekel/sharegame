@@ -30,6 +30,7 @@ module.exports.main_page = function(req, res){
         });
       });
     });
+    return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}});
   } else {
     //return not-logged in
     return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}});
