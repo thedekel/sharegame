@@ -1,14 +1,13 @@
 var Mongolian = require("mongolian");
 
-var server;
-console.log(process.env);
+var db;
 if (process.env.MONGOLAB_URI){
-  server = new Mongolian(process.env.MONGOLAB_URI);
+  db = new Mongolian(process.env.MONGOLAB_URI);
 } else {
-  server = new Mongolian;
+  var server = new Mongolian;
+  db = server.db("playshare");
 }
 
-var db = server.db("playshare");
 
 var games = db.collection("games");
 var users = db.collection("users");
