@@ -1,4 +1,5 @@
 var Mongolian = require("mongolian");
+var ObjectId = Mongolian.ObjectId;
 
 var db;
 if (process.env.MONGOLAB_URI){
@@ -46,7 +47,7 @@ module.exports.add_want = function(req, res){
       name: me.name,
       fbid: me.id
     };
-    games.update({_id:req.params.game_id}, {$addToSet:{users:userobj}}, true,function(){
+    games.update({_id:ObjectId(req.params.game_id)}, {$addToSet:{users:userobj}}, true,function(){
       res.redirect('/');
     });
   });
