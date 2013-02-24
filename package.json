@@ -10,7 +10,8 @@
     "express":   "3.x",
     "faceplate": "0.0.4",
     "proto": "*",
-    "mongolian":"*"
+    "mongolian":"*",
+    "request":"*"
   },
   "scripts":
   {
