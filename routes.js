@@ -3,7 +3,134 @@
  * show the main page
  */
 module.exports.main_page = function(req, res){
-  res.render('new');
+  var pop_games = [
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg"
+  }
+  ];
+  var friends_games = [
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+      img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
+      friends: [
+      {
+        name: "Jarvis Johnson",
+        fbid: 3289423,
+        prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+      },
+      {
+        name: "Jarvis Johnson",
+        fbid: 3289423,
+        prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+      },
+      {
+        name: "Jarvis Johnson",
+        fbid: 3289423,
+        prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+      },
+      {
+        name: "Jarvis Johnson",
+        fbid: 3289423,
+        prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+      }
+    ]
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
+    friends: [
+      ]
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
+    friends: [
+    {
+      name: "Jarvis Johnson",
+      fbid: 3289423,
+      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+    },
+    {
+      name: "Jarvis Johnson",
+      fbid: 3289423,
+      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+    },
+    {
+      name: "Jarvis Johnson",
+      fbid: 3289423,
+      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+    },
+    {
+      name: "Jarvis Johnson",
+      fbid: 3289423,
+      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+    }
+    ]
+  },
+  {
+    _id: "myidisastring"
+      name: "Dragon Ball Z Bodokai tenkaichi 3",
+    img: "http://buycds.files.wordpress.com/2009/01/boxart_eur_dragon-ball-z-budokai-tenkaichi-3.jpg",
+    friends: [
+    {
+      name: "Jarvis Johnson",
+      fbid: 3289423,
+      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+    },
+    {
+      name: "Jarvis Johnson",
+      fbid: 3289423,
+      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+    },
+    {
+      name: "Jarvis Johnson",
+      fbid: 3289423,
+      prof_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/260639_646922063_1318803919_q.jpg"
+    },
+    ]
+  }
+  ];
+  res.render('new',{pop_games:pop_games, friends_games:friends_games});
 };
 
 /* MIN VIABLE
