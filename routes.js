@@ -32,7 +32,7 @@ module.exports.main_page = function(req, res){
     });
   } else {
     //return not-logged in
-    return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID, games: false}});
+    return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}, games: false});
   }
 };
 
@@ -43,7 +43,6 @@ module.exports.main_page = function(req, res){
 module.exports.add_want = function(req, res){
   req.facebook.me(function(me){
     console.log("me", me);
-    console.log("what is: ", {_id:new ObjectId(req.params.game_id)}, {$addToSet:{users:userobj}});
     games.update({_id:new ObjectId(req.params.game_id)}, {$addToSet:{users:me}}, function(){
       res.redirect('/');
     });
@@ -63,6 +62,7 @@ module.exports.buy_request_page = function(req, res){
  * create a new purchase on the database, notify target user
  */
 module.exports.submit_buy_request = function(req, res){
+
   res.send('create a new purchase on thedatabase, notify target user');
 };
 
