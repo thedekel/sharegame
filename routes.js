@@ -27,9 +27,7 @@ module.exports.main_page = function(req, res){
         console.log("USER MATCHED: ", doc);
       });
       */
-    console.log('about to query games');
     games.find({}).limit(12).toArray(function(err,games_arr){
-      console.log("games_arr: ",games_arr);
       return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}, games:games_arr});
     });
   } else {
@@ -46,6 +44,7 @@ module.exports.add_want = function(req, res){
   req.facebook.me(function(me){
     console.log("me", me);
     games.update({_id:new ObjectId(req.params.game_id)}, {$addToSet:{users:me}}, function(){
+      console.log("i'm about to redirect to where I belong");
       res.redirect('/');
     });
   });
