@@ -64,7 +64,8 @@
     </script>
     <% if (games) { %>
     <% for (i=0; i<games.length; i++){ %>
-    <div><%= JSON.stringify(games[i]) %>
+    <div>
+      <div class="one fourth bottom padded"><img src="<%= games[i].img %>" width="200"></div>
       <form action="/wishlist/<%= games[i]._id %>" method="post">
         <input type='submit' value='add to wishlist' />
       </form>

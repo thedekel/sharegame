@@ -43,12 +43,8 @@ module.exports.main_page = function(req, res){
 module.exports.add_want = function(req, res){
   req.facebook.me(function(me){
     console.log("me", me);
-    var userobj = {
-      name: me.name,
-      fbid: me.id
-    };
     console.log("what is: ", {_id:new ObjectId(req.params.game_id)}, {$addToSet:{users:userobj}});
-    games.update({_id:new ObjectId(req.params.game_id)}, {$addToSet:{users:userobj}}, function(){
+    games.update({_id:new ObjectId(req.params.game_id)}, {$addToSet:{users:me}}, function(){
       res.redirect('/');
     });
   });
