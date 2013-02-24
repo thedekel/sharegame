@@ -1,6 +1,7 @@
 var Mongolian = require("mongolian");
 
 var server;
+console.log(process.env);
 if (process.env.MONGOLAB_URI){
   server = new Mongolian(process.env.MONGOLAB_URI);
 } else {
