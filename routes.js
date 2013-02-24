@@ -26,12 +26,14 @@ module.exports.main_page = function(req, res){
       games.find({}).limit(12).toArray(function(err,games_arr){
         for(var i = 0; i < games_arr.length; i += 1){
           games_arr[i].fcount = 0;
+          games_arr[i].friends = [];
         }
         users.find({$or:friends}).forEach(function(friend){
           for(var i = 0; i < games_arr.length; i += 1){
             for (var j = 0; j < games_arr[i].users.length; j+=1){
               if (friend.id == games_arr[i].users[j].id){
                 games_arr[i].fcount++;
+                games_arr[i].friends.push(friend);
               }
             }
           }
