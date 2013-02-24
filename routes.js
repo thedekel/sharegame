@@ -22,13 +22,22 @@ var purchases = db.collection("users");
 module.exports.main_page = function(req, res){
   console.log(req.facebook);
   if (req.facebook.token){
-/*    req.facebook.get('/me/friends', {}, function(friends) {
-      users.findOne({$or:friends},function(err,doc){
-        console.log("USER MATCHED: ", doc);
+    req.facebook.get('/me/friends', {}, function(friends) {
+      games.find({}).limit(12).toArray(function(err,games_arr){
+        for(var i = 0; i < games_arr.length; i += 1){
+          games_arr[i].fcount = 0;
+        }
+        users.find({$or:friends}).forEach(function(friend){
+          for(var i = 0; i < games_arr.length; i += 1){
+            for (var j = 0; j < games_arr[i].users.length; j+=1){
+              if (friend.id == games_arr[i].users[j].id){
+                games_arr[i].fcount++;
+              }
+            }
+          }
+        });
+        return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}, games:games_arr});
       });
-      */
-    games.find({}).limit(12).toArray(function(err,games_arr){
-      return res.render("index", {app:{id:process.env.FACEBOOK_APP_ID}, games:games_arr});
     });
   } else {
     //return not-logged in
