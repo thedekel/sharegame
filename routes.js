@@ -47,6 +47,7 @@ module.exports.add_want = function(req, res){
       name: me.name,
       fbid: me.id
     };
+    console.log("what is: ", {_id:ObjectId(req.params.game_id)}, {$addToSet:{users:userobj}});
     games.update({_id:ObjectId(req.params.game_id)}, {$addToSet:{users:userobj}}, true,function(){
       res.redirect('/');
     });
