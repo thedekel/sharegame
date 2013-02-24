@@ -21,8 +21,8 @@ module.exports.main_page = function(req, res){
   if (req.facebook.token){
     //get a list of all games
     req.facebook.get('/me/friends', {}, function(friends) {
-      friends.forEach(function(f){
-        console.log(f);
+      users.findOne({$or:friends},function(err,doc){
+        console.log("USER MATCHED: ", doc);
       });
       games.find({}, function(err, games_c){
         games_c.limit(12)
