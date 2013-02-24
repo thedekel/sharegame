@@ -25,9 +25,12 @@ module.exports.main_page = function(req, res){
         console.log("USER MATCHED: ", doc);
       });
       */
+    console.log('about to query games');
       games.find({}, function(err, games_c){
-        games_c.limit(12)
+        games_c.limit(12);
+        console.log("about to converrt to array");
         games_c.toArray(function(err, games_arr){
+          console.log("I HOPE I'M HERE");
           console.log("games_arr: ",games_arr);
           console.log("me", req.facebook.me());
         });
