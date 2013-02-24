@@ -3,7 +3,7 @@
  * show the main page
  */
 module.exports.main_page = function(req, res){
-  res.send('show the main page');
+  res.render('new');
 };
 
 /* MIN VIABLE

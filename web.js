@@ -6,6 +6,7 @@ var routes = require('./routes');
 
 // create an express webserver
 var app = express()
+app.set('view engine', 'ejs');
 app.use( express.logger());
 app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
